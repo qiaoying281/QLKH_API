@@ -1,0 +1,1475 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="QLKHModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Accounts">
+          <Key>
+            <PropertyRef Name="accountID" />
+          </Key>
+          <Property Name="accountID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="email" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="avatar" Type="nvarchar(max)" />
+          <Property Name="password" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="status" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="decentralizationId" Type="int" Nullable="false" />
+          <Property Name="resetPasswordToken" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="resetPasswordTokenExpiry" Type="datetime2" Precision="7" />
+          <Property Name="createAt" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="updateAt" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Answers">
+          <Key>
+            <PropertyRef Name="answerID" />
+          </Key>
+          <Property Name="answerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="questionID" Type="int" Nullable="false" />
+          <Property Name="rightAnswer" Type="bit" Nullable="false" />
+          <Property Name="content" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="createAt" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="updateAt" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CourseParts">
+          <Key>
+            <PropertyRef Name="coursePartID" />
+          </Key>
+          <Property Name="coursePartID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="courseID" Type="int" Nullable="false" />
+          <Property Name="partTitle" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="amout" Type="int" Nullable="false" />
+          <Property Name="duration" Type="int" Nullable="false" />
+          <Property Name="createAt" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="updateAt" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="index" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Courses">
+          <Key>
+            <PropertyRef Name="courseID" />
+          </Key>
+          <Property Name="courseID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="courseName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="courseDescription" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="tutorID" Type="int" Nullable="false" />
+          <Property Name="cost" Type="int" Nullable="false" />
+          <Property Name="createAt" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="updateAt" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Decentralizations">
+          <Key>
+            <PropertyRef Name="decentralizationID" />
+          </Key>
+          <Property Name="decentralizationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="authorityName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="createAt" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="updateAt" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Enrollments">
+          <Key>
+            <PropertyRef Name="enrollmentID" />
+          </Key>
+          <Property Name="enrollmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="studentID" Type="int" Nullable="false" />
+          <Property Name="courseID" Type="int" Nullable="false" />
+          <Property Name="tutorID" Type="int" Nullable="false" />
+          <Property Name="enrollmentDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="statusTypeID" Type="int" Nullable="false" />
+          <Property Name="createAt" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="updateAt" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Exams">
+          <Key>
+            <PropertyRef Name="examID" />
+          </Key>
+          <Property Name="examID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="coursePartID" Type="int" Nullable="false" />
+          <Property Name="examTypeID" Type="int" Nullable="false" />
+          <Property Name="examName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="workTime" Type="int" Nullable="false" />
+          <Property Name="dueDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="minGrade" Type="float" Nullable="false" />
+          <Property Name="createAt" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="updateAt" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ExamTypes">
+          <Key>
+            <PropertyRef Name="examTypeID" />
+          </Key>
+          <Property Name="examTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="examTypeName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="createAt" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="updateAt" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Fees">
+          <Key>
+            <PropertyRef Name="feeID" />
+          </Key>
+          <Property Name="feeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="studentID" Type="int" Nullable="false" />
+          <Property Name="courseID" Type="int" Nullable="false" />
+          <Property Name="cost" Type="int" Nullable="false" />
+          <Property Name="status" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="createAt" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="updateAt" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="isChecked" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Lectures">
+          <Key>
+            <PropertyRef Name="lectureID" />
+          </Key>
+          <Property Name="lectureID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="coursePartID" Type="int" Nullable="false" />
+          <Property Name="lectureTitle" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="lectureLink" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="duration" Type="int" />
+          <Property Name="isWatched" Type="bit" Nullable="false" />
+          <Property Name="isWatching" Type="bit" Nullable="false" />
+          <Property Name="isAvailable" Type="bit" Nullable="false" />
+          <Property Name="createAt" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="updateAt" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="index" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentHistorys">
+          <Key>
+            <PropertyRef Name="paymentHistoryID" />
+          </Key>
+          <Property Name="paymentHistoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="studentID" Type="int" Nullable="false" />
+          <Property Name="paymentTypeID" Type="int" Nullable="false" />
+          <Property Name="paymentName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="amount" Type="int" Nullable="false" />
+          <Property Name="createAt" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="updateAt" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentTypes">
+          <Key>
+            <PropertyRef Name="paymentTypeID" />
+          </Key>
+          <Property Name="paymentTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="paymentTypeName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="creatAt" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="updatedAt" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Questions">
+          <Key>
+            <PropertyRef Name="questionID" />
+          </Key>
+          <Property Name="questionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="examID" Type="int" Nullable="false" />
+          <Property Name="questionName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="createAt" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="updateAt" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StatusTypes">
+          <Key>
+            <PropertyRef Name="statusTypeID" />
+          </Key>
+          <Property Name="statusTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="statusName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="createAt" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="updateAt" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Students">
+          <Key>
+            <PropertyRef Name="studentID" />
+          </Key>
+          <Property Name="studentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="accountID" Type="int" Nullable="false" />
+          <Property Name="fullName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="contactNumber" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="provinceID" Type="int" />
+          <Property Name="districtID" Type="int" />
+          <Property Name="communeID" Type="int" />
+          <Property Name="email" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="totalMoney" Type="int" Nullable="false" />
+          <Property Name="createAt" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="updateAt" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Submissions">
+          <Key>
+            <PropertyRef Name="submissionID" />
+          </Key>
+          <Property Name="submissionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="examID" Type="int" Nullable="false" />
+          <Property Name="studentID" Type="int" Nullable="false" />
+          <Property Name="submissionDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="examTimes" Type="int" Nullable="false" />
+          <Property Name="grade" Type="int" Nullable="false" />
+          <Property Name="createAt" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="updateAt" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TutorAssignments">
+          <Key>
+            <PropertyRef Name="tutorAssignmentID" />
+          </Key>
+          <Property Name="tutorAssignmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tutorID" Type="int" Nullable="false" />
+          <Property Name="courseID" Type="int" Nullable="false" />
+          <Property Name="numberOfStudent" Type="int" Nullable="false" />
+          <Property Name="assignmentDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="createAt" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="updateAt" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tutors">
+          <Key>
+            <PropertyRef Name="tutorID" />
+          </Key>
+          <Property Name="tutorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="accountID" Type="int" Nullable="false" />
+          <Property Name="fullName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="contactNumber" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="provinceID" Type="int" />
+          <Property Name="districtID" Type="int" />
+          <Property Name="communeID" Type="int" />
+          <Property Name="email" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="createAt" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="updateAt" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VerifyCodes">
+          <Key>
+            <PropertyRef Name="verifyCodeID" />
+          </Key>
+          <Property Name="verifyCodeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="email" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="code" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="expiredTime" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Accounts_Decentralizations_decentralizationId">
+          <End Role="Decentralizations" Type="Self.Decentralizations" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Decentralizations">
+              <PropertyRef Name="decentralizationID" />
+            </Principal>
+            <Dependent Role="Accounts">
+              <PropertyRef Name="decentralizationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Answers_Questions_questionID">
+          <End Role="Questions" Type="Self.Questions" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Answers" Type="Self.Answers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="questionID" />
+            </Principal>
+            <Dependent Role="Answers">
+              <PropertyRef Name="questionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CourseParts_Courses_courseID">
+          <End Role="Courses" Type="Self.Courses" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CourseParts" Type="Self.CourseParts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="courseID" />
+            </Principal>
+            <Dependent Role="CourseParts">
+              <PropertyRef Name="courseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Courses_Tutors_tutorID">
+          <End Role="Tutors" Type="Self.Tutors" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Courses" Type="Self.Courses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tutors">
+              <PropertyRef Name="tutorID" />
+            </Principal>
+            <Dependent Role="Courses">
+              <PropertyRef Name="tutorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Enrollments_StatusTypes_statusTypeID">
+          <End Role="StatusTypes" Type="Self.StatusTypes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Enrollments" Type="Self.Enrollments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusTypes">
+              <PropertyRef Name="statusTypeID" />
+            </Principal>
+            <Dependent Role="Enrollments">
+              <PropertyRef Name="statusTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Enrollments_Students_studentID">
+          <End Role="Students" Type="Self.Students" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Enrollments" Type="Self.Enrollments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="studentID" />
+            </Principal>
+            <Dependent Role="Enrollments">
+              <PropertyRef Name="studentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Exams_CourseParts_coursePartID">
+          <End Role="CourseParts" Type="Self.CourseParts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Exams" Type="Self.Exams" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CourseParts">
+              <PropertyRef Name="coursePartID" />
+            </Principal>
+            <Dependent Role="Exams">
+              <PropertyRef Name="coursePartID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Exams_ExamTypes_examTypeID">
+          <End Role="ExamTypes" Type="Self.ExamTypes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Exams" Type="Self.Exams" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExamTypes">
+              <PropertyRef Name="examTypeID" />
+            </Principal>
+            <Dependent Role="Exams">
+              <PropertyRef Name="examTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fees_Students_studentID">
+          <End Role="Students" Type="Self.Students" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Fees" Type="Self.Fees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="studentID" />
+            </Principal>
+            <Dependent Role="Fees">
+              <PropertyRef Name="studentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lectures_CourseParts_coursePartID">
+          <End Role="CourseParts" Type="Self.CourseParts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Lectures" Type="Self.Lectures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CourseParts">
+              <PropertyRef Name="coursePartID" />
+            </Principal>
+            <Dependent Role="Lectures">
+              <PropertyRef Name="coursePartID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentHistorys_PaymentTypes_paymentTypeID">
+          <End Role="PaymentTypes" Type="Self.PaymentTypes" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PaymentHistorys" Type="Self.PaymentHistorys" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentTypes">
+              <PropertyRef Name="paymentTypeID" />
+            </Principal>
+            <Dependent Role="PaymentHistorys">
+              <PropertyRef Name="paymentTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentHistorys_Students_studentID">
+          <End Role="Students" Type="Self.Students" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PaymentHistorys" Type="Self.PaymentHistorys" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="studentID" />
+            </Principal>
+            <Dependent Role="PaymentHistorys">
+              <PropertyRef Name="studentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Questions_Exams_examID">
+          <End Role="Exams" Type="Self.Exams" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Questions" Type="Self.Questions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exams">
+              <PropertyRef Name="examID" />
+            </Principal>
+            <Dependent Role="Questions">
+              <PropertyRef Name="examID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_Accounts_accountID">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="accountID" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="accountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Submissions_Students_studentID">
+          <End Role="Students" Type="Self.Students" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Submissions" Type="Self.Submissions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="studentID" />
+            </Principal>
+            <Dependent Role="Submissions">
+              <PropertyRef Name="studentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TutorAssignments_Tutors_tutorID">
+          <End Role="Tutors" Type="Self.Tutors" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TutorAssignments" Type="Self.TutorAssignments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tutors">
+              <PropertyRef Name="tutorID" />
+            </Principal>
+            <Dependent Role="TutorAssignments">
+              <PropertyRef Name="tutorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tutors_Accounts_accountID">
+          <End Role="Accounts" Type="Self.Accounts" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Tutors" Type="Self.Tutors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="accountID" />
+            </Principal>
+            <Dependent Role="Tutors">
+              <PropertyRef Name="accountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLKHModelStoreContainer">
+          <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Answers" EntityType="Self.Answers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CourseParts" EntityType="Self.CourseParts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Courses" EntityType="Self.Courses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Decentralizations" EntityType="Self.Decentralizations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Enrollments" EntityType="Self.Enrollments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Exams" EntityType="Self.Exams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExamTypes" EntityType="Self.ExamTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fees" EntityType="Self.Fees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lectures" EntityType="Self.Lectures" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentHistorys" EntityType="Self.PaymentHistorys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentTypes" EntityType="Self.PaymentTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Questions" EntityType="Self.Questions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StatusTypes" EntityType="Self.StatusTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Submissions" EntityType="Self.Submissions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TutorAssignments" EntityType="Self.TutorAssignments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tutors" EntityType="Self.Tutors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VerifyCodes" EntityType="Self.VerifyCodes" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Accounts_Decentralizations_decentralizationId" Association="Self.FK_Accounts_Decentralizations_decentralizationId">
+            <End Role="Decentralizations" EntitySet="Decentralizations" />
+            <End Role="Accounts" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Answers_Questions_questionID" Association="Self.FK_Answers_Questions_questionID">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="Answers" EntitySet="Answers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CourseParts_Courses_courseID" Association="Self.FK_CourseParts_Courses_courseID">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="CourseParts" EntitySet="CourseParts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Courses_Tutors_tutorID" Association="Self.FK_Courses_Tutors_tutorID">
+            <End Role="Tutors" EntitySet="Tutors" />
+            <End Role="Courses" EntitySet="Courses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Enrollments_StatusTypes_statusTypeID" Association="Self.FK_Enrollments_StatusTypes_statusTypeID">
+            <End Role="StatusTypes" EntitySet="StatusTypes" />
+            <End Role="Enrollments" EntitySet="Enrollments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Enrollments_Students_studentID" Association="Self.FK_Enrollments_Students_studentID">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="Enrollments" EntitySet="Enrollments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Exams_CourseParts_coursePartID" Association="Self.FK_Exams_CourseParts_coursePartID">
+            <End Role="CourseParts" EntitySet="CourseParts" />
+            <End Role="Exams" EntitySet="Exams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Exams_ExamTypes_examTypeID" Association="Self.FK_Exams_ExamTypes_examTypeID">
+            <End Role="ExamTypes" EntitySet="ExamTypes" />
+            <End Role="Exams" EntitySet="Exams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fees_Students_studentID" Association="Self.FK_Fees_Students_studentID">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="Fees" EntitySet="Fees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lectures_CourseParts_coursePartID" Association="Self.FK_Lectures_CourseParts_coursePartID">
+            <End Role="CourseParts" EntitySet="CourseParts" />
+            <End Role="Lectures" EntitySet="Lectures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentHistorys_PaymentTypes_paymentTypeID" Association="Self.FK_PaymentHistorys_PaymentTypes_paymentTypeID">
+            <End Role="PaymentTypes" EntitySet="PaymentTypes" />
+            <End Role="PaymentHistorys" EntitySet="PaymentHistorys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentHistorys_Students_studentID" Association="Self.FK_PaymentHistorys_Students_studentID">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="PaymentHistorys" EntitySet="PaymentHistorys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Questions_Exams_examID" Association="Self.FK_Questions_Exams_examID">
+            <End Role="Exams" EntitySet="Exams" />
+            <End Role="Questions" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_Accounts_accountID" Association="Self.FK_Students_Accounts_accountID">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Submissions_Students_studentID" Association="Self.FK_Submissions_Students_studentID">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="Submissions" EntitySet="Submissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TutorAssignments_Tutors_tutorID" Association="Self.FK_TutorAssignments_Tutors_tutorID">
+            <End Role="Tutors" EntitySet="Tutors" />
+            <End Role="TutorAssignments" EntitySet="TutorAssignments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tutors_Accounts_accountID" Association="Self.FK_Tutors_Accounts_accountID">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Tutors" EntitySet="Tutors" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QLKHModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="accountID" />
+          </Key>
+          <Property Name="accountID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="avatar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="decentralizationId" Type="Int32" Nullable="false" />
+          <Property Name="resetPasswordToken" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="resetPasswordTokenExpiry" Type="DateTime" Precision="7" />
+          <Property Name="createAt" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="updateAt" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Decentralization" Relationship="Self.FK_Accounts_Decentralizations_decentralizationId" FromRole="Accounts" ToRole="Decentralizations" />
+          <NavigationProperty Name="Students" Relationship="Self.FK_Students_Accounts_accountID" FromRole="Accounts" ToRole="Students" />
+          <NavigationProperty Name="Tutors" Relationship="Self.FK_Tutors_Accounts_accountID" FromRole="Accounts" ToRole="Tutors" />
+        </EntityType>
+        <EntityType Name="Answer">
+          <Key>
+            <PropertyRef Name="answerID" />
+          </Key>
+          <Property Name="answerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="questionID" Type="Int32" Nullable="false" />
+          <Property Name="rightAnswer" Type="Boolean" Nullable="false" />
+          <Property Name="content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="createAt" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="updateAt" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Question" Relationship="Self.FK_Answers_Questions_questionID" FromRole="Answers" ToRole="Questions" />
+        </EntityType>
+        <EntityType Name="CoursePart">
+          <Key>
+            <PropertyRef Name="coursePartID" />
+          </Key>
+          <Property Name="coursePartID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="courseID" Type="Int32" Nullable="false" />
+          <Property Name="partTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="amout" Type="Int32" Nullable="false" />
+          <Property Name="duration" Type="Int32" Nullable="false" />
+          <Property Name="createAt" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="updateAt" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="index" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Cours" Relationship="Self.FK_CourseParts_Courses_courseID" FromRole="CourseParts" ToRole="Courses" />
+          <NavigationProperty Name="Exams" Relationship="Self.FK_Exams_CourseParts_coursePartID" FromRole="CourseParts" ToRole="Exams" />
+          <NavigationProperty Name="Lectures" Relationship="Self.FK_Lectures_CourseParts_coursePartID" FromRole="CourseParts" ToRole="Lectures" />
+        </EntityType>
+        <EntityType Name="Cours">
+          <Key>
+            <PropertyRef Name="courseID" />
+          </Key>
+          <Property Name="courseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="courseName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="courseDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tutorID" Type="Int32" Nullable="false" />
+          <Property Name="cost" Type="Int32" Nullable="false" />
+          <Property Name="createAt" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="updateAt" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="CourseParts" Relationship="Self.FK_CourseParts_Courses_courseID" FromRole="Courses" ToRole="CourseParts" />
+          <NavigationProperty Name="Tutor" Relationship="Self.FK_Courses_Tutors_tutorID" FromRole="Courses" ToRole="Tutors" />
+        </EntityType>
+        <EntityType Name="Decentralization">
+          <Key>
+            <PropertyRef Name="decentralizationID" />
+          </Key>
+          <Property Name="decentralizationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="authorityName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="createAt" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="updateAt" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Accounts" Relationship="Self.FK_Accounts_Decentralizations_decentralizationId" FromRole="Decentralizations" ToRole="Accounts" />
+        </EntityType>
+        <EntityType Name="Enrollment">
+          <Key>
+            <PropertyRef Name="enrollmentID" />
+          </Key>
+          <Property Name="enrollmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="studentID" Type="Int32" Nullable="false" />
+          <Property Name="courseID" Type="Int32" Nullable="false" />
+          <Property Name="tutorID" Type="Int32" Nullable="false" />
+          <Property Name="enrollmentDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="statusTypeID" Type="Int32" Nullable="false" />
+          <Property Name="createAt" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="updateAt" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="StatusType" Relationship="Self.FK_Enrollments_StatusTypes_statusTypeID" FromRole="Enrollments" ToRole="StatusTypes" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_Enrollments_Students_studentID" FromRole="Enrollments" ToRole="Students" />
+        </EntityType>
+        <EntityType Name="Exam">
+          <Key>
+            <PropertyRef Name="examID" />
+          </Key>
+          <Property Name="examID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="coursePartID" Type="Int32" Nullable="false" />
+          <Property Name="examTypeID" Type="Int32" Nullable="false" />
+          <Property Name="examName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="workTime" Type="Int32" Nullable="false" />
+          <Property Name="dueDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="minGrade" Type="Double" Nullable="false" />
+          <Property Name="createAt" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="updateAt" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="CoursePart" Relationship="Self.FK_Exams_CourseParts_coursePartID" FromRole="Exams" ToRole="CourseParts" />
+          <NavigationProperty Name="ExamType" Relationship="Self.FK_Exams_ExamTypes_examTypeID" FromRole="Exams" ToRole="ExamTypes" />
+          <NavigationProperty Name="Questions" Relationship="Self.FK_Questions_Exams_examID" FromRole="Exams" ToRole="Questions" />
+        </EntityType>
+        <EntityType Name="ExamType">
+          <Key>
+            <PropertyRef Name="examTypeID" />
+          </Key>
+          <Property Name="examTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="examTypeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="createAt" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="updateAt" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Exams" Relationship="Self.FK_Exams_ExamTypes_examTypeID" FromRole="ExamTypes" ToRole="Exams" />
+        </EntityType>
+        <EntityType Name="Fee">
+          <Key>
+            <PropertyRef Name="feeID" />
+          </Key>
+          <Property Name="feeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="studentID" Type="Int32" Nullable="false" />
+          <Property Name="courseID" Type="Int32" Nullable="false" />
+          <Property Name="cost" Type="Int32" Nullable="false" />
+          <Property Name="status" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="createAt" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="updateAt" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="isChecked" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_Fees_Students_studentID" FromRole="Fees" ToRole="Students" />
+        </EntityType>
+        <EntityType Name="Lecture">
+          <Key>
+            <PropertyRef Name="lectureID" />
+          </Key>
+          <Property Name="lectureID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="coursePartID" Type="Int32" Nullable="false" />
+          <Property Name="lectureTitle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="lectureLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="duration" Type="Int32" />
+          <Property Name="isWatched" Type="Boolean" Nullable="false" />
+          <Property Name="isWatching" Type="Boolean" Nullable="false" />
+          <Property Name="isAvailable" Type="Boolean" Nullable="false" />
+          <Property Name="createAt" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="updateAt" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="index" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CoursePart" Relationship="Self.FK_Lectures_CourseParts_coursePartID" FromRole="Lectures" ToRole="CourseParts" />
+        </EntityType>
+        <EntityType Name="PaymentHistory">
+          <Key>
+            <PropertyRef Name="paymentHistoryID" />
+          </Key>
+          <Property Name="paymentHistoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="studentID" Type="Int32" Nullable="false" />
+          <Property Name="paymentTypeID" Type="Int32" Nullable="false" />
+          <Property Name="paymentName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="amount" Type="Int32" Nullable="false" />
+          <Property Name="createAt" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="updateAt" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="PaymentType" Relationship="Self.FK_PaymentHistorys_PaymentTypes_paymentTypeID" FromRole="PaymentHistorys" ToRole="PaymentTypes" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_PaymentHistorys_Students_studentID" FromRole="PaymentHistorys" ToRole="Students" />
+        </EntityType>
+        <EntityType Name="PaymentType">
+          <Key>
+            <PropertyRef Name="paymentTypeID" />
+          </Key>
+          <Property Name="paymentTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="paymentTypeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="creatAt" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="updatedAt" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="PaymentHistorys" Relationship="Self.FK_PaymentHistorys_PaymentTypes_paymentTypeID" FromRole="PaymentTypes" ToRole="PaymentHistorys" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="questionID" />
+          </Key>
+          <Property Name="questionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="examID" Type="Int32" Nullable="false" />
+          <Property Name="questionName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="createAt" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="updateAt" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Answers" Relationship="Self.FK_Answers_Questions_questionID" FromRole="Questions" ToRole="Answers" />
+          <NavigationProperty Name="Exam" Relationship="Self.FK_Questions_Exams_examID" FromRole="Questions" ToRole="Exams" />
+        </EntityType>
+        <EntityType Name="StatusType">
+          <Key>
+            <PropertyRef Name="statusTypeID" />
+          </Key>
+          <Property Name="statusTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="statusName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="createAt" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="updateAt" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Enrollments" Relationship="Self.FK_Enrollments_StatusTypes_statusTypeID" FromRole="StatusTypes" ToRole="Enrollments" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="studentID" />
+          </Key>
+          <Property Name="studentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="accountID" Type="Int32" Nullable="false" />
+          <Property Name="fullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="contactNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="provinceID" Type="Int32" />
+          <Property Name="districtID" Type="Int32" />
+          <Property Name="communeID" Type="Int32" />
+          <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="totalMoney" Type="Int32" Nullable="false" />
+          <Property Name="createAt" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="updateAt" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Account" Relationship="Self.FK_Students_Accounts_accountID" FromRole="Students" ToRole="Accounts" />
+          <NavigationProperty Name="Enrollments" Relationship="Self.FK_Enrollments_Students_studentID" FromRole="Students" ToRole="Enrollments" />
+          <NavigationProperty Name="Fees" Relationship="Self.FK_Fees_Students_studentID" FromRole="Students" ToRole="Fees" />
+          <NavigationProperty Name="PaymentHistorys" Relationship="Self.FK_PaymentHistorys_Students_studentID" FromRole="Students" ToRole="PaymentHistorys" />
+          <NavigationProperty Name="Submissions" Relationship="Self.FK_Submissions_Students_studentID" FromRole="Students" ToRole="Submissions" />
+        </EntityType>
+        <EntityType Name="Submission">
+          <Key>
+            <PropertyRef Name="submissionID" />
+          </Key>
+          <Property Name="submissionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="examID" Type="Int32" Nullable="false" />
+          <Property Name="studentID" Type="Int32" Nullable="false" />
+          <Property Name="submissionDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="examTimes" Type="Int32" Nullable="false" />
+          <Property Name="grade" Type="Int32" Nullable="false" />
+          <Property Name="createAt" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="updateAt" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_Submissions_Students_studentID" FromRole="Submissions" ToRole="Students" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TutorAssignment">
+          <Key>
+            <PropertyRef Name="tutorAssignmentID" />
+          </Key>
+          <Property Name="tutorAssignmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tutorID" Type="Int32" Nullable="false" />
+          <Property Name="courseID" Type="Int32" Nullable="false" />
+          <Property Name="numberOfStudent" Type="Int32" Nullable="false" />
+          <Property Name="assignmentDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="createAt" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="updateAt" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Tutor" Relationship="Self.FK_TutorAssignments_Tutors_tutorID" FromRole="TutorAssignments" ToRole="Tutors" />
+        </EntityType>
+        <EntityType Name="Tutor">
+          <Key>
+            <PropertyRef Name="tutorID" />
+          </Key>
+          <Property Name="tutorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="accountID" Type="Int32" Nullable="false" />
+          <Property Name="fullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="contactNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="provinceID" Type="Int32" />
+          <Property Name="districtID" Type="Int32" />
+          <Property Name="communeID" Type="Int32" />
+          <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="createAt" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="updateAt" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Account" Relationship="Self.FK_Tutors_Accounts_accountID" FromRole="Tutors" ToRole="Accounts" />
+          <NavigationProperty Name="Courses" Relationship="Self.FK_Courses_Tutors_tutorID" FromRole="Tutors" ToRole="Courses" />
+          <NavigationProperty Name="TutorAssignments" Relationship="Self.FK_TutorAssignments_Tutors_tutorID" FromRole="Tutors" ToRole="TutorAssignments" />
+        </EntityType>
+        <EntityType Name="VerifyCode">
+          <Key>
+            <PropertyRef Name="verifyCodeID" />
+          </Key>
+          <Property Name="verifyCodeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="expiredTime" Type="DateTime" Nullable="false" Precision="7" />
+        </EntityType>
+        <Association Name="FK_Accounts_Decentralizations_decentralizationId">
+          <End Role="Decentralizations" Type="Self.Decentralization" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Accounts" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Decentralizations">
+              <PropertyRef Name="decentralizationID" />
+            </Principal>
+            <Dependent Role="Accounts">
+              <PropertyRef Name="decentralizationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_Accounts_accountID">
+          <End Role="Accounts" Type="Self.Account" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Students" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="accountID" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="accountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tutors_Accounts_accountID">
+          <End Role="Accounts" Type="Self.Account" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Tutors" Type="Self.Tutor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Accounts">
+              <PropertyRef Name="accountID" />
+            </Principal>
+            <Dependent Role="Tutors">
+              <PropertyRef Name="accountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Answers_Questions_questionID">
+          <End Role="Questions" Type="Self.Question" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Answers" Type="Self.Answer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="questionID" />
+            </Principal>
+            <Dependent Role="Answers">
+              <PropertyRef Name="questionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CourseParts_Courses_courseID">
+          <End Role="Courses" Type="Self.Cours" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CourseParts" Type="Self.CoursePart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Courses">
+              <PropertyRef Name="courseID" />
+            </Principal>
+            <Dependent Role="CourseParts">
+              <PropertyRef Name="courseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Exams_CourseParts_coursePartID">
+          <End Role="CourseParts" Type="Self.CoursePart" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Exams" Type="Self.Exam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CourseParts">
+              <PropertyRef Name="coursePartID" />
+            </Principal>
+            <Dependent Role="Exams">
+              <PropertyRef Name="coursePartID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lectures_CourseParts_coursePartID">
+          <End Role="CourseParts" Type="Self.CoursePart" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Lectures" Type="Self.Lecture" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CourseParts">
+              <PropertyRef Name="coursePartID" />
+            </Principal>
+            <Dependent Role="Lectures">
+              <PropertyRef Name="coursePartID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Courses_Tutors_tutorID">
+          <End Role="Tutors" Type="Self.Tutor" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Courses" Type="Self.Cours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tutors">
+              <PropertyRef Name="tutorID" />
+            </Principal>
+            <Dependent Role="Courses">
+              <PropertyRef Name="tutorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Enrollments_StatusTypes_statusTypeID">
+          <End Role="StatusTypes" Type="Self.StatusType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Enrollments" Type="Self.Enrollment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusTypes">
+              <PropertyRef Name="statusTypeID" />
+            </Principal>
+            <Dependent Role="Enrollments">
+              <PropertyRef Name="statusTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Enrollments_Students_studentID">
+          <End Role="Students" Type="Self.Student" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Enrollments" Type="Self.Enrollment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="studentID" />
+            </Principal>
+            <Dependent Role="Enrollments">
+              <PropertyRef Name="studentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Exams_ExamTypes_examTypeID">
+          <End Role="ExamTypes" Type="Self.ExamType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Exams" Type="Self.Exam" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ExamTypes">
+              <PropertyRef Name="examTypeID" />
+            </Principal>
+            <Dependent Role="Exams">
+              <PropertyRef Name="examTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Questions_Exams_examID">
+          <End Role="Exams" Type="Self.Exam" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Questions" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exams">
+              <PropertyRef Name="examID" />
+            </Principal>
+            <Dependent Role="Questions">
+              <PropertyRef Name="examID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Fees_Students_studentID">
+          <End Role="Students" Type="Self.Student" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Fees" Type="Self.Fee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="studentID" />
+            </Principal>
+            <Dependent Role="Fees">
+              <PropertyRef Name="studentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentHistorys_PaymentTypes_paymentTypeID">
+          <End Role="PaymentTypes" Type="Self.PaymentType" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PaymentHistorys" Type="Self.PaymentHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentTypes">
+              <PropertyRef Name="paymentTypeID" />
+            </Principal>
+            <Dependent Role="PaymentHistorys">
+              <PropertyRef Name="paymentTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaymentHistorys_Students_studentID">
+          <End Role="Students" Type="Self.Student" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PaymentHistorys" Type="Self.PaymentHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="studentID" />
+            </Principal>
+            <Dependent Role="PaymentHistorys">
+              <PropertyRef Name="studentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Submissions_Students_studentID">
+          <End Role="Students" Type="Self.Student" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Submissions" Type="Self.Submission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="studentID" />
+            </Principal>
+            <Dependent Role="Submissions">
+              <PropertyRef Name="studentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TutorAssignments_Tutors_tutorID">
+          <End Role="Tutors" Type="Self.Tutor" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TutorAssignments" Type="Self.TutorAssignment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tutors">
+              <PropertyRef Name="tutorID" />
+            </Principal>
+            <Dependent Role="TutorAssignments">
+              <PropertyRef Name="tutorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLKHEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="Self.Account" />
+          <EntitySet Name="Answers" EntityType="Self.Answer" />
+          <EntitySet Name="CourseParts" EntityType="Self.CoursePart" />
+          <EntitySet Name="Courses" EntityType="Self.Cours" />
+          <EntitySet Name="Decentralizations" EntityType="Self.Decentralization" />
+          <EntitySet Name="Enrollments" EntityType="Self.Enrollment" />
+          <EntitySet Name="Exams" EntityType="Self.Exam" />
+          <EntitySet Name="ExamTypes" EntityType="Self.ExamType" />
+          <EntitySet Name="Fees" EntityType="Self.Fee" />
+          <EntitySet Name="Lectures" EntityType="Self.Lecture" />
+          <EntitySet Name="PaymentHistorys" EntityType="Self.PaymentHistory" />
+          <EntitySet Name="PaymentTypes" EntityType="Self.PaymentType" />
+          <EntitySet Name="Questions" EntityType="Self.Question" />
+          <EntitySet Name="StatusTypes" EntityType="Self.StatusType" />
+          <EntitySet Name="Students" EntityType="Self.Student" />
+          <EntitySet Name="Submissions" EntityType="Self.Submission" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="TutorAssignments" EntityType="Self.TutorAssignment" />
+          <EntitySet Name="Tutors" EntityType="Self.Tutor" />
+          <EntitySet Name="VerifyCodes" EntityType="Self.VerifyCode" />
+          <AssociationSet Name="FK_Accounts_Decentralizations_decentralizationId" Association="Self.FK_Accounts_Decentralizations_decentralizationId">
+            <End Role="Decentralizations" EntitySet="Decentralizations" />
+            <End Role="Accounts" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_Accounts_accountID" Association="Self.FK_Students_Accounts_accountID">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tutors_Accounts_accountID" Association="Self.FK_Tutors_Accounts_accountID">
+            <End Role="Accounts" EntitySet="Accounts" />
+            <End Role="Tutors" EntitySet="Tutors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Answers_Questions_questionID" Association="Self.FK_Answers_Questions_questionID">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="Answers" EntitySet="Answers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CourseParts_Courses_courseID" Association="Self.FK_CourseParts_Courses_courseID">
+            <End Role="Courses" EntitySet="Courses" />
+            <End Role="CourseParts" EntitySet="CourseParts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Exams_CourseParts_coursePartID" Association="Self.FK_Exams_CourseParts_coursePartID">
+            <End Role="CourseParts" EntitySet="CourseParts" />
+            <End Role="Exams" EntitySet="Exams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lectures_CourseParts_coursePartID" Association="Self.FK_Lectures_CourseParts_coursePartID">
+            <End Role="CourseParts" EntitySet="CourseParts" />
+            <End Role="Lectures" EntitySet="Lectures" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Courses_Tutors_tutorID" Association="Self.FK_Courses_Tutors_tutorID">
+            <End Role="Tutors" EntitySet="Tutors" />
+            <End Role="Courses" EntitySet="Courses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Enrollments_StatusTypes_statusTypeID" Association="Self.FK_Enrollments_StatusTypes_statusTypeID">
+            <End Role="StatusTypes" EntitySet="StatusTypes" />
+            <End Role="Enrollments" EntitySet="Enrollments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Enrollments_Students_studentID" Association="Self.FK_Enrollments_Students_studentID">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="Enrollments" EntitySet="Enrollments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Exams_ExamTypes_examTypeID" Association="Self.FK_Exams_ExamTypes_examTypeID">
+            <End Role="ExamTypes" EntitySet="ExamTypes" />
+            <End Role="Exams" EntitySet="Exams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Questions_Exams_examID" Association="Self.FK_Questions_Exams_examID">
+            <End Role="Exams" EntitySet="Exams" />
+            <End Role="Questions" EntitySet="Questions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fees_Students_studentID" Association="Self.FK_Fees_Students_studentID">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="Fees" EntitySet="Fees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentHistorys_PaymentTypes_paymentTypeID" Association="Self.FK_PaymentHistorys_PaymentTypes_paymentTypeID">
+            <End Role="PaymentTypes" EntitySet="PaymentTypes" />
+            <End Role="PaymentHistorys" EntitySet="PaymentHistorys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaymentHistorys_Students_studentID" Association="Self.FK_PaymentHistorys_Students_studentID">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="PaymentHistorys" EntitySet="PaymentHistorys" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Submissions_Students_studentID" Association="Self.FK_Submissions_Students_studentID">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="Submissions" EntitySet="Submissions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TutorAssignments_Tutors_tutorID" Association="Self.FK_TutorAssignments_Tutors_tutorID">
+            <End Role="Tutors" EntitySet="Tutors" />
+            <End Role="TutorAssignments" EntitySet="TutorAssignments" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QLKHModelStoreContainer" CdmEntityContainer="QLKHEntities">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="QLKHModel.Account">
+              <MappingFragment StoreEntitySet="Accounts">
+                <ScalarProperty Name="accountID" ColumnName="accountID" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="avatar" ColumnName="avatar" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="decentralizationId" ColumnName="decentralizationId" />
+                <ScalarProperty Name="resetPasswordToken" ColumnName="resetPasswordToken" />
+                <ScalarProperty Name="resetPasswordTokenExpiry" ColumnName="resetPasswordTokenExpiry" />
+                <ScalarProperty Name="createAt" ColumnName="createAt" />
+                <ScalarProperty Name="updateAt" ColumnName="updateAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Answers">
+            <EntityTypeMapping TypeName="QLKHModel.Answer">
+              <MappingFragment StoreEntitySet="Answers">
+                <ScalarProperty Name="answerID" ColumnName="answerID" />
+                <ScalarProperty Name="questionID" ColumnName="questionID" />
+                <ScalarProperty Name="rightAnswer" ColumnName="rightAnswer" />
+                <ScalarProperty Name="content" ColumnName="content" />
+                <ScalarProperty Name="createAt" ColumnName="createAt" />
+                <ScalarProperty Name="updateAt" ColumnName="updateAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CourseParts">
+            <EntityTypeMapping TypeName="QLKHModel.CoursePart">
+              <MappingFragment StoreEntitySet="CourseParts">
+                <ScalarProperty Name="coursePartID" ColumnName="coursePartID" />
+                <ScalarProperty Name="courseID" ColumnName="courseID" />
+                <ScalarProperty Name="partTitle" ColumnName="partTitle" />
+                <ScalarProperty Name="amout" ColumnName="amout" />
+                <ScalarProperty Name="duration" ColumnName="duration" />
+                <ScalarProperty Name="createAt" ColumnName="createAt" />
+                <ScalarProperty Name="updateAt" ColumnName="updateAt" />
+                <ScalarProperty Name="index" ColumnName="index" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Courses">
+            <EntityTypeMapping TypeName="QLKHModel.Cours">
+              <MappingFragment StoreEntitySet="Courses">
+                <ScalarProperty Name="courseID" ColumnName="courseID" />
+                <ScalarProperty Name="courseName" ColumnName="courseName" />
+                <ScalarProperty Name="courseDescription" ColumnName="courseDescription" />
+                <ScalarProperty Name="tutorID" ColumnName="tutorID" />
+                <ScalarProperty Name="cost" ColumnName="cost" />
+                <ScalarProperty Name="createAt" ColumnName="createAt" />
+                <ScalarProperty Name="updateAt" ColumnName="updateAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Decentralizations">
+            <EntityTypeMapping TypeName="QLKHModel.Decentralization">
+              <MappingFragment StoreEntitySet="Decentralizations">
+                <ScalarProperty Name="decentralizationID" ColumnName="decentralizationID" />
+                <ScalarProperty Name="authorityName" ColumnName="authorityName" />
+                <ScalarProperty Name="createAt" ColumnName="createAt" />
+                <ScalarProperty Name="updateAt" ColumnName="updateAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Enrollments">
+            <EntityTypeMapping TypeName="QLKHModel.Enrollment">
+              <MappingFragment StoreEntitySet="Enrollments">
+                <ScalarProperty Name="enrollmentID" ColumnName="enrollmentID" />
+                <ScalarProperty Name="studentID" ColumnName="studentID" />
+                <ScalarProperty Name="courseID" ColumnName="courseID" />
+                <ScalarProperty Name="tutorID" ColumnName="tutorID" />
+                <ScalarProperty Name="enrollmentDate" ColumnName="enrollmentDate" />
+                <ScalarProperty Name="statusTypeID" ColumnName="statusTypeID" />
+                <ScalarProperty Name="createAt" ColumnName="createAt" />
+                <ScalarProperty Name="updateAt" ColumnName="updateAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Exams">
+            <EntityTypeMapping TypeName="QLKHModel.Exam">
+              <MappingFragment StoreEntitySet="Exams">
+                <ScalarProperty Name="examID" ColumnName="examID" />
+                <ScalarProperty Name="coursePartID" ColumnName="coursePartID" />
+                <ScalarProperty Name="examTypeID" ColumnName="examTypeID" />
+                <ScalarProperty Name="examName" ColumnName="examName" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="workTime" ColumnName="workTime" />
+                <ScalarProperty Name="dueDate" ColumnName="dueDate" />
+                <ScalarProperty Name="minGrade" ColumnName="minGrade" />
+                <ScalarProperty Name="createAt" ColumnName="createAt" />
+                <ScalarProperty Name="updateAt" ColumnName="updateAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExamTypes">
+            <EntityTypeMapping TypeName="QLKHModel.ExamType">
+              <MappingFragment StoreEntitySet="ExamTypes">
+                <ScalarProperty Name="examTypeID" ColumnName="examTypeID" />
+                <ScalarProperty Name="examTypeName" ColumnName="examTypeName" />
+                <ScalarProperty Name="createAt" ColumnName="createAt" />
+                <ScalarProperty Name="updateAt" ColumnName="updateAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fees">
+            <EntityTypeMapping TypeName="QLKHModel.Fee">
+              <MappingFragment StoreEntitySet="Fees">
+                <ScalarProperty Name="feeID" ColumnName="feeID" />
+                <ScalarProperty Name="studentID" ColumnName="studentID" />
+                <ScalarProperty Name="courseID" ColumnName="courseID" />
+                <ScalarProperty Name="cost" ColumnName="cost" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="createAt" ColumnName="createAt" />
+                <ScalarProperty Name="updateAt" ColumnName="updateAt" />
+                <ScalarProperty Name="isChecked" ColumnName="isChecked" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lectures">
+            <EntityTypeMapping TypeName="QLKHModel.Lecture">
+              <MappingFragment StoreEntitySet="Lectures">
+                <ScalarProperty Name="lectureID" ColumnName="lectureID" />
+                <ScalarProperty Name="coursePartID" ColumnName="coursePartID" />
+                <ScalarProperty Name="lectureTitle" ColumnName="lectureTitle" />
+                <ScalarProperty Name="lectureLink" ColumnName="lectureLink" />
+                <ScalarProperty Name="duration" ColumnName="duration" />
+                <ScalarProperty Name="isWatched" ColumnName="isWatched" />
+                <ScalarProperty Name="isWatching" ColumnName="isWatching" />
+                <ScalarProperty Name="isAvailable" ColumnName="isAvailable" />
+                <ScalarProperty Name="createAt" ColumnName="createAt" />
+                <ScalarProperty Name="updateAt" ColumnName="updateAt" />
+                <ScalarProperty Name="index" ColumnName="index" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentHistorys">
+            <EntityTypeMapping TypeName="QLKHModel.PaymentHistory">
+              <MappingFragment StoreEntitySet="PaymentHistorys">
+                <ScalarProperty Name="paymentHistoryID" ColumnName="paymentHistoryID" />
+                <ScalarProperty Name="studentID" ColumnName="studentID" />
+                <ScalarProperty Name="paymentTypeID" ColumnName="paymentTypeID" />
+                <ScalarProperty Name="paymentName" ColumnName="paymentName" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="createAt" ColumnName="createAt" />
+                <ScalarProperty Name="updateAt" ColumnName="updateAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentTypes">
+            <EntityTypeMapping TypeName="QLKHModel.PaymentType">
+              <MappingFragment StoreEntitySet="PaymentTypes">
+                <ScalarProperty Name="paymentTypeID" ColumnName="paymentTypeID" />
+                <ScalarProperty Name="paymentTypeName" ColumnName="paymentTypeName" />
+                <ScalarProperty Name="creatAt" ColumnName="creatAt" />
+                <ScalarProperty Name="updatedAt" ColumnName="updatedAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questions">
+            <EntityTypeMapping TypeName="QLKHModel.Question">
+              <MappingFragment StoreEntitySet="Questions">
+                <ScalarProperty Name="questionID" ColumnName="questionID" />
+                <ScalarProperty Name="examID" ColumnName="examID" />
+                <ScalarProperty Name="questionName" ColumnName="questionName" />
+                <ScalarProperty Name="createAt" ColumnName="createAt" />
+                <ScalarProperty Name="updateAt" ColumnName="updateAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusTypes">
+            <EntityTypeMapping TypeName="QLKHModel.StatusType">
+              <MappingFragment StoreEntitySet="StatusTypes">
+                <ScalarProperty Name="statusTypeID" ColumnName="statusTypeID" />
+                <ScalarProperty Name="statusName" ColumnName="statusName" />
+                <ScalarProperty Name="createAt" ColumnName="createAt" />
+                <ScalarProperty Name="updateAt" ColumnName="updateAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="QLKHModel.Student">
+              <MappingFragment StoreEntitySet="Students">
+                <ScalarProperty Name="studentID" ColumnName="studentID" />
+                <ScalarProperty Name="accountID" ColumnName="accountID" />
+                <ScalarProperty Name="fullName" ColumnName="fullName" />
+                <ScalarProperty Name="contactNumber" ColumnName="contactNumber" />
+                <ScalarProperty Name="provinceID" ColumnName="provinceID" />
+                <ScalarProperty Name="districtID" ColumnName="districtID" />
+                <ScalarProperty Name="communeID" ColumnName="communeID" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="totalMoney" ColumnName="totalMoney" />
+                <ScalarProperty Name="createAt" ColumnName="createAt" />
+                <ScalarProperty Name="updateAt" ColumnName="updateAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Submissions">
+            <EntityTypeMapping TypeName="QLKHModel.Submission">
+              <MappingFragment StoreEntitySet="Submissions">
+                <ScalarProperty Name="submissionID" ColumnName="submissionID" />
+                <ScalarProperty Name="examID" ColumnName="examID" />
+                <ScalarProperty Name="studentID" ColumnName="studentID" />
+                <ScalarProperty Name="submissionDate" ColumnName="submissionDate" />
+                <ScalarProperty Name="examTimes" ColumnName="examTimes" />
+                <ScalarProperty Name="grade" ColumnName="grade" />
+                <ScalarProperty Name="createAt" ColumnName="createAt" />
+                <ScalarProperty Name="updateAt" ColumnName="updateAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="QLKHModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TutorAssignments">
+            <EntityTypeMapping TypeName="QLKHModel.TutorAssignment">
+              <MappingFragment StoreEntitySet="TutorAssignments">
+                <ScalarProperty Name="tutorAssignmentID" ColumnName="tutorAssignmentID" />
+                <ScalarProperty Name="tutorID" ColumnName="tutorID" />
+                <ScalarProperty Name="courseID" ColumnName="courseID" />
+                <ScalarProperty Name="numberOfStudent" ColumnName="numberOfStudent" />
+                <ScalarProperty Name="assignmentDate" ColumnName="assignmentDate" />
+                <ScalarProperty Name="createAt" ColumnName="createAt" />
+                <ScalarProperty Name="updateAt" ColumnName="updateAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tutors">
+            <EntityTypeMapping TypeName="QLKHModel.Tutor">
+              <MappingFragment StoreEntitySet="Tutors">
+                <ScalarProperty Name="tutorID" ColumnName="tutorID" />
+                <ScalarProperty Name="accountID" ColumnName="accountID" />
+                <ScalarProperty Name="fullName" ColumnName="fullName" />
+                <ScalarProperty Name="contactNumber" ColumnName="contactNumber" />
+                <ScalarProperty Name="provinceID" ColumnName="provinceID" />
+                <ScalarProperty Name="districtID" ColumnName="districtID" />
+                <ScalarProperty Name="communeID" ColumnName="communeID" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="createAt" ColumnName="createAt" />
+                <ScalarProperty Name="updateAt" ColumnName="updateAt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VerifyCodes">
+            <EntityTypeMapping TypeName="QLKHModel.VerifyCode">
+              <MappingFragment StoreEntitySet="VerifyCodes">
+                <ScalarProperty Name="verifyCodeID" ColumnName="verifyCodeID" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="expiredTime" ColumnName="expiredTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
